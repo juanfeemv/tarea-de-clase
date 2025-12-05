@@ -1,0 +1,167 @@
+:root {
+  --bg-dark: #0f1014;       /* Fondo principal */
+  --card-bg: #18191d;       /* Fondo tarjeta */
+  --accent: #ff4b4b;        /* Rojo acento */
+  --text-primary: #ffffff;
+  --text-secondary: #6e7683;
+}
+
+/* 1. Configuración Global: Sin scroll en la ventana */
+html, body {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+  background-color: var(--bg-dark);
+  overflow: hidden; /* Bloquea scrollbars del navegador */
+}
+
+/* 2. Contenedor Principal: Flexbox y Borde */
+.league-container {
+  width: 100%;
+  height: 100vh; /* Ocupa toda la altura visible */
+  background: var(--bg-dark);
+  color: var(--text-primary);
+  font-family: 'Inter', system-ui, sans-serif;
+  
+  /* Borde rojo perimetral */
+  border: 4px solid var(--accent);
+  box-sizing: border-box; /* Asegura que el borde no cause desbordamiento */
+  padding: 20px;
+  
+  /* Estructura Flex vertical */
+  display: flex;
+  flex-direction: column;
+}
+
+/* --- HEADER Y CONTROLES --- */
+.league-header {
+  text-align: center;
+  margin-bottom: 30px;
+  flex: 0 0 auto; /* No se encoge verticalmente */
+}
+
+.controls {
+  display: inline-flex;
+  align-items: center;
+  gap: 20px;
+  background: #1f2128;
+  padding: 8px 12px;
+  border-radius: 12px;
+  border: 1px solid #2d3039;
+}
+
+.round-display {
+  font-size: 1rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: var(--text-primary);
+  min-width: 180px;
+  text-align: center;
+  letter-spacing: 1px;
+}
+
+button {
+  background: #2d3039;
+  border: none;
+  color: white;
+  width: 36px;
+  height: 36px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: all 0.2s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+button:hover:not(:disabled) {
+  background: var(--accent);
+  color: white;
+}
+
+button:disabled {
+  opacity: 0.3;
+  cursor: not-allowed;
+}
+
+/* --- GRID DE PARTIDOS --- */
+.matches-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+  gap: 16px;
+  max-width: 1200px;
+  width: 100%;
+  margin: 0 auto;
+  
+  /* Scroll interno */
+  flex: 1; /* Ocupa todo el espacio restante */
+  overflow-y: auto; /* Scroll solo aquí si es necesario */
+  align-content: start;
+  padding-bottom: 20px;
+
+  /* Ocultar barra de scroll visualmente */
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* IE/Edge */
+}
+
+/* Ocultar barra en Chrome/Safari/Opera */
+.matches-grid::-webkit-scrollbar {
+  display: none;
+}
+
+/* --- TARJETA DEL PARTIDO --- */
+.match-card {
+  background: var(--card-bg);
+  padding: 20px 25px;
+  border-radius: 12px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border: 1px solid #252830;
+  transition: transform 0.2s ease, border-color 0.2s ease;
+  position: relative;
+}
+
+.match-card:hover {
+  transform: translateY(-2px);
+  border-color: #3f4452;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.4);
+}
+
+.team {
+  font-size: 1.1rem;
+  font-weight: 600;
+  flex: 1;
+  width: 40%;
+}
+
+.home {
+  text-align: right;
+  color: var(--text-primary);
+}
+
+.away {
+  text-align: left;
+  color: var(--text-primary);
+}
+
+.vs-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin: 0 20px;
+  width: 40px;
+}
+
+.vs {
+  font-size: 0.75rem;
+  font-weight: 900;
+  color: var(--accent);
+  background: rgba(255, 75, 75, 0.08);
+  padding: 4px 8px;
+  border-radius: 4px;
+  letter-spacing: 1px;
+}

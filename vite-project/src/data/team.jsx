@@ -1,0 +1,22 @@
+export const TEAMS = [
+  { id: 1, name: 'Real Madrid' },
+  { id: 2, name: 'FC Barcelona' },
+  { id: 3, name: 'Villareal' },
+  { id: 4, name: 'Atlético de Madrid' },
+  { id: 5, name: 'Real Betis' },
+  { id: 6, name: 'RCD Espanyol' },
+  { id: 7, name: 'Getafe' },
+  { id: 8, name: 'Athletic Club de Bilbao' },
+  { id: 9, name: 'Rayo Vallecano' },
+  { id: 10, name: 'Real Sociedad' },
+  { id: 11, name: 'Elche CF' },
+  { id: 12, name: 'Celta de Vigo' },
+  { id: 13, name: 'Sevilla' },
+  { id: 14, name: 'Alavés' },
+  { id: 15, name: 'Valencia CF' },
+  { id: 16, name: 'RCD Mallorca' },
+  { id: 17, name: 'Osasuna' },
+  { id: 18, name: 'Girona' },
+  { id: 19, name: 'Levante' },
+  { id: 20, name: 'Real Oviedo' }
+];
