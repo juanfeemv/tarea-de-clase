@@ -10,7 +10,7 @@ const RoundSelector = ({ currentRound, maxRounds, onPrevious, onNext, roundType 
       </button>
       
       <span className="round-display">
-        JORNADA {currentRound} 
+        Jornada {currentRound} 
         <small>({roundType})</small>
       </span>
       

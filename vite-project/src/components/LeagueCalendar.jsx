@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { TEAMS } from '../data/team.jsx';
 import { generateSchedule } from '../utils/scheduler.jsx';
 import LeagueHeader from './LeagueHeader.jsx';
@@ -7,15 +7,10 @@ import MatchCard from './MatchCard.jsx';
 import '../css/League.css';
 
 const LeagueCalendar = () => {
-  const [schedule, setSchedule] = useState([]);
+  const [schedule] = useState(() => generateSchedule(TEAMS));
   const [selectedRound, setSelectedRound] = useState(1);
   
   const MAX_ROUNDS = 38;
-
-  useEffect(() => {
-    const generated = generateSchedule(TEAMS);
-    setSchedule(generated);
-  }, []);
 
   const currentMatches = schedule.find(r => r.roundNumber === selectedRound);
 
@@ -24,7 +19,7 @@ const LeagueCalendar = () => {
 
   return (
     <div className="league-container">
-      <LeagueHeader title="LaLiga EASPORTS">
+      <LeagueHeader title="La Liga - EASPORTS">
         <RoundSelector
           currentRound={selectedRound}
           maxRounds={MAX_ROUNDS}
