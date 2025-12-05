@@ -1,53 +1,42 @@
 import React, { useState, useEffect } from 'react';
 import { TEAMS } from '../data/team.jsx';
 import { generateSchedule } from '../utils/scheduler.jsx';
+import LeagueHeader from './LeagueHeader.jsx';
+import RoundSelector from './RoundSelector.jsx';
+import MatchCard from './MatchCard.jsx';
 import '../css/League.css';
 
 const LeagueCalendar = () => {
   const [schedule, setSchedule] = useState([]);
-  // Controla que jornada ver
-  const [selectedRound, setSelectedRound] = useState(1); 
+  const [selectedRound, setSelectedRound] = useState(1);
   
+  const MAX_ROUNDS = 38;
 
   useEffect(() => {
-    // Generamos el calendario al cargar
     const generated = generateSchedule(TEAMS);
     setSchedule(generated);
   }, []);
 
   const currentMatches = schedule.find(r => r.roundNumber === selectedRound);
 
+  const handlePreviousRound = () => setSelectedRound(prev => prev - 1);
+  const handleNextRound = () => setSelectedRound(prev => prev + 1);
+
   return (
     <div className="league-container">
-      <header className="league-header">
-        <h1>LaLiga EASPORTS</h1>
-        <div className="controls">
-          <button 
-            disabled={selectedRound === 1} 
-            onClick={() => setSelectedRound(prev => prev - 1)}>
-            Ant
-          </button>
-          
-          <span className="round-display">
-            JORNADA {selectedRound} 
-            <small>({currentMatches?.type})</small>
-          </span>
-          
-          <button 
-            disabled={selectedRound === 38} 
-            onClick={() => setSelectedRound(prev => prev + 1)}>
-            Sig 
-          </button>
-        </div>
-      </header>
+      <LeagueHeader title="LaLiga EASPORTS">
+        <RoundSelector
+          currentRound={selectedRound}
+          maxRounds={MAX_ROUNDS}
+          onPrevious={handlePreviousRound}
+          onNext={handleNextRound}
+          roundType={currentMatches?.type}
+        />
+      </LeagueHeader>
 
       <div className="matches-grid">
         {currentMatches?.matches.map((match, index) => (
-          <div key={index} className="match-card">
-            <div className="team home">{match.home.name}</div>
-            <div className="vs">VS</div>
-            <div className="team away">{match.away.name}</div>
-          </div>
+          <MatchCard key={index} match={match} />
         ))}
       </div>
     </div>
