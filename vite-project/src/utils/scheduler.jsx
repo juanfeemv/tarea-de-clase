@@ -34,7 +34,7 @@ export const generateSchedule = (teams) => {
     rotatingTeams.splice(1, 0, rotatingTeams.pop());
   }
 
-  // 2. GENERAR VUELTA (Jornadas 20-38)
+  // GENERAR VUELTA (Jornadas 20-38)
   const secondHalfRounds = rounds.map((round) => ({
     roundNumber: round.roundNumber + totalRounds,
     type: 'VUELTA',
